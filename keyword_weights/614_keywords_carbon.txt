@@ -1,0 +1,18 @@
+troposphere, 5
+atmosphere, 8
+carbon cycle, 10
+carbon dioxide, 10
+co2, 10
+CO<sub>2</sub>, 10
+climate, 6
+resolution, 7
+transport, 3
+inversion, 7
+inverse modeling, 6
+carbon dioxide fluxes, 10
+atmospheric co2 concentrations, 10
+ecosystem, 2
+biosphere, 4
+ocean, 3
+ocean acidity, -10
+acidification, -10  

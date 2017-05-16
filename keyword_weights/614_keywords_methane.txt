@@ -1,0 +1,16 @@
+methane, 10
+ocean, 10
+hydrates, 10
+wetlands, 8
+transport, 4
+inversion,2
+inverse modeling, 3
+troposphere, 5
+atmosphere, 3
+climate, 3
+resolution, 3
+emissions, 2
+sources, 8
+sinks, 8
+hydroxyl radicals, 8
+OH, 10
