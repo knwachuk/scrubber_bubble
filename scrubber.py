@@ -7,7 +7,7 @@ from urllib import urlopen
 class Scrubber:
 
     # ToDo set this value to dynamic allocation
-    DATA_LOC = '/Users/knwachuk/Documents/GESTAR/'
+    DATA_LOC = ''
 
     # ToDo implement all stripping to be done by regex, so that it is
     # more dynamic and more forgiven.
