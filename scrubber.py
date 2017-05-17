@@ -6,7 +6,7 @@ from urllib import urlopen
 
 class Scrubber:
 
-    # ToDo set this value to dynamic allocation
+    # ToDo set this value to dynamic allocation via GUI
     DATA_LOC = ''
 
     # ToDo implement all stripping to be done by regex, so that it is
@@ -189,6 +189,7 @@ def main():
     target_url = 'http://onlinelibrary.wiley.com/rss/journal/10.1002/%28ISSN%291944-8007'
     target_url = 'http://onlinelibrary.wiley.com/rss/journal/10.1002/%28ISSN%291520-6564'
 
+    # ToDo set this value to dynamic allocation via GUI
     target = 'methane'
 
 #    file_name = '/Users/knwachuk/Documents/GESTAR/614_keywords.txt'
