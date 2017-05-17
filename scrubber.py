@@ -40,7 +40,7 @@ class Scrubber:
             for key in sorted(ordered_list.keys()):
                 ordered_str += key + ', ' + ordered_list[key] + '\n'
                 threshold_score += int(ordered_list[key])
-        return ordered_str,threshold_score
+        return ordered_str, threshold_score
 
     def file_output(self, output_file, output_str):
         cur_date = time.strftime('_%m_%d_%Y')
