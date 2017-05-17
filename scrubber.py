@@ -7,7 +7,7 @@ from urllib import urlopen
 class Scrubber:
 
     # ToDo set this value to dynamic allocation via GUI
-    DATA_LOC = ''
+    DATA_LOC = 'keyword_weights/'
 
     # ToDo implement all stripping to be done by regex, so that it is
     # more dynamic and more forgiven.
