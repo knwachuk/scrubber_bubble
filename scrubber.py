@@ -4,6 +4,7 @@
 import os, sys, optparse, re, time
 from urllib import urlopen
 
+
 class Scrubber:
 
     # ToDo set this value to dynamic allocation via GUI
@@ -18,7 +19,7 @@ class Scrubber:
     def file_preparation(self, file_name):
         file_name = Scrubber().DATA_LOC + file_name
         try:
-            f = open(file_name,'r')
+            f = open(file_name, 'r')
         except(IOError), e:
             print(e)
         else:
@@ -48,7 +49,7 @@ class Scrubber:
         # ToDo reading of file to verify that the new write topic is
         # not already present.
         try:
-            f = open(file_name,'w')
+            f = open(file_name, 'w')
         except(IOError), e:
             print(e)
         else:
@@ -65,9 +66,9 @@ class Scrubber:
         pat_finder_link = re.compile('<link>(.*)</link>')
         pat_finder_abstract = re.compile('xhtml"><p>(.*)</p>')
 
-        find_pat_title = re.findall(pat_finder_title,webpage)
-        find_pat_link = re.findall(pat_finder_link,webpage)
-        find_pat_abstract = re.findall(pat_finder_abstract,webpage)
+        find_pat_title = re.findall(pat_finder_title, webpage)
+        find_pat_link = re.findall(pat_finder_link, webpage)
+        find_pat_abstract = re.findall(pat_finder_abstract, webpage)
         
         list_iterator = [num for num in range(1, len(find_pat_title))]
 
@@ -77,14 +78,15 @@ class Scrubber:
         for item in list_iterator:
             current_value = 0
             learning_rate = .5
-            threshold_value = nominalizer*weights[1]
+            threshold_value = nominalizer * weights[1]
 
             # Keyword item iterator
             for line in weights[0].rstrip().split('\n'):
                 key_word,key_value = [word.strip() for word in line.split(',')]
 
                 pat_finder_keyword = re.compile(key_word)
-                find_pat_keyword = re.findall(pat_finder_keyword, find_pat_abstract[item])
+                find_pat_keyword = re.findall(pat_finder_keyword,
+                                              find_pat_abstract[item])
 
                 current_value += 2 * len(find_pat_keyword) * int(key_value)
                 
@@ -94,12 +96,13 @@ class Scrubber:
             pat_finder_topic = re.compile('[Mm]ethan')
 
             find_topic_title = re.findall(pat_finder_topic, find_pat_title[item])
-            find_topic_abstract = re.findall(pat_finder_topic, find_pat_abstract[item])
+            find_topic_abstract = re.findall(pat_finder_topic,
+                                             find_pat_abstract[item])
 
             if len(find_topic_title) != 0 or len(find_topic_abstract) != 0:
                 learning_rate = .75
                 if learning_rate * current_value >= threshold_value:
-                    print('%s - %s' % (find_pat_title[item],find_pat_link[item]))
+                    print('%s - %s' % (find_pat_title[item], find_pat_link[item]))
                     print(find_pat_abstract[item])
                     print "Score: %.2f, Limit: %.2f for Item: %d" % \
                         (learning_rate * current_value, threshold_value, item)
@@ -116,7 +119,7 @@ class Scrubber:
                     num_of_articles += 1
 
         print("Total article(s) = %d" % len(find_pat_title))
-        print("Scrubbed article(s) = %d" % num_of_articles)        
+        print("Scrubbed article(s) = %d" % num_of_articles)
         return
 
     def scrubber_learner_out(self, target_url, weights):
@@ -133,7 +136,7 @@ class Scrubber:
         find_pat_link = re.findall(pat_finder_link, webpage)
         find_pat_abstract = re.findall(pat_finder_abstract, webpage)
         
-        list_iterator = [num for num in range(1,len(find_pat_title))]
+        list_iterator = [num for num in range(1, len(find_pat_title))]
 
         nominalizer = .25
         num_of_articles = 0
@@ -148,7 +151,8 @@ class Scrubber:
                 key_word,key_value = [word.strip() for word in line.split(',')]
 
                 pat_finder_keyword = re.compile(key_word)
-                find_pat_keyword = re.findall(pat_finder_keyword, find_pat_abstract[item])
+                find_pat_keyword = re.findall(pat_finder_keyword,
+                                              find_pat_abstract[item])
 
                 current_value += 2 * len(find_pat_keyword) * int(key_value)
                 
@@ -158,28 +162,31 @@ class Scrubber:
             pat_finder_topic = re.compile('[Mm]ethan')
 
             find_topic_title = re.findall(pat_finder_topic, find_pat_title[item])
-            find_topic_abstract = re.findall(pat_finder_topic, find_pat_abstract[item])
+            find_topic_abstract = re.findall(pat_finder_topic,
+                                             find_pat_abstract[item])
 
             if len(find_topic_title) != 0 or len(find_topic_abstract) != 0:
                 learning_rate = .75
-                if learning_rate*current_value >= threshold_value:
-                    output_str += '%s - %s\n\n' % (find_pat_title[item], find_pat_link[item])
+                if learning_rate * current_value >= threshold_value:
+                    output_str += '%s - %s\n\n' % (find_pat_title[item],
+                                                   find_pat_link[item])
                     output_str += find_pat_abstract[item]
                     output_str += "\nScore: %.2f, Threshold limit: %.2f for Item: %d" % \
-                        (learning_rate*current_value, threshold_value, item)
+                        (learning_rate * current_value, threshold_value, item)
                     output_str += '\n\n\n'
                     num_of_articles += 1
             else:
                 threshold_value = 2 * threshold_value
                 if learning_rate * current_value >= threshold_value:
-                    output_str += '%s - %s\n\n' % (find_pat_title[item], find_pat_link[item])
+                    output_str += '%s - %s\n\n' % (find_pat_title[item],
+                                                   find_pat_link[item])
                     output_str += find_pat_abstract[item]
                     output_str += "\nScore: %.2f, Threshold limit: %.2f for Item: %d" % \
                         (learning_rate * current_value, threshold_value, item)
                     output_str += '\n\n\n'
                     num_of_articles += 1
         output_str += ("Total article(s) = %d\n" % len(find_pat_title))
-        output_str += ("Scrubbed article(s) = %d" % num_of_articles)        
+        output_str += ("Scrubbed article(s) = %d" % num_of_articles)
         return output_str
 
 
