@@ -20,7 +20,7 @@ class Scrubber:
         file_name = Scrubber().DATA_LOC + file_name
         try:
             f = open(file_name, 'r')
-        except(IOError), e:
+        except IOError as e:
             print(e)
         else:
             ordered_list = {}
@@ -50,7 +50,7 @@ class Scrubber:
         # not already present.
         try:
             f = open(file_name, 'w')
-        except(IOError), e:
+        except IOError as e:
             print(e)
         else:
             f.write(output_str)
@@ -104,8 +104,8 @@ class Scrubber:
                 if learning_rate * current_value >= threshold_value:
                     print('%s - %s' % (find_pat_title[item], find_pat_link[item]))
                     print(find_pat_abstract[item])
-                    print "Score: %.2f, Limit: %.2f for Item: %d" % \
-                        (learning_rate * current_value, threshold_value, item)
+                    print("Score: %.2f, Limit: %.2f for Item: %d" % \
+                        (learning_rate * current_value, threshold_value, item))
                     print('\n')
                     num_of_articles += 1
             else:
@@ -113,8 +113,8 @@ class Scrubber:
                 if learning_rate * current_value >= threshold_value:
                     print('%s - %s' % (find_pat_title[item], find_pat_link[item]))
                     print(find_pat_abstract[item])
-                    print "Score: %.2f, Limit: %.2f for Item: %d" % \
-                        (learning_rate*current_value, threshold_value, item)
+                    print("Score: %.2f, Limit: %.2f for Item: %d" % \
+                        (learning_rate*current_value, threshold_value, item))
                     print('\n')
                     num_of_articles += 1
 
